@@ -1,13 +1,10 @@
----
-Title: gep13
-NoSidebar: true
-NoContainer: true
-NoGutter: true
----
-
-<div class="jumbotron">
-    <div class="container">
-        <h1 class="display-4">gep13</h1>
-        <a class="btn btn-primary btn-lg" href="docs" role="button">Learn more</a>
-    </div>
-</div>
+@section Sidebar {
+  @{
+    IDocument sidebarRoot = Context.Documents[Docs.Pages].First();
+    IReadOnlyList<IDocument> sidebarChildren = sidebarRoot.DocumentList(Keys.Children);
+    if(sidebarChildren != null && sidebarChildren.Count > 0)
+    {
+      @Html.Partial("Sidebar/_ChildPagesMenu", sidebarChildren)
+    }
+  }
+}
